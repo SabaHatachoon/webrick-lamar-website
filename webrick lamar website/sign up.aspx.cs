@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using webrick_lamar_website.DataSet1TableAdapters;
 
 namespace webrick_lamar_website
 {
@@ -42,6 +43,18 @@ namespace webrick_lamar_website
                 errorMessage.Text += "oops something is wrong.";
             else
                 errorMessage.Text += "check the terms of conditions!!!!";
+            UsersTableAdapter UsersTbl = new UsersTableAdapter();
+            if (UsersTbl.CheckUser(userName.Text) > 0)
+
+            {
+                errorMessage.Text = "User Already Exist";
+            }
+              
+            else
+            {
+                UsersTbl.Insert(userName.Text, firstName.Text, lastName.Text, password.Text , sexChoise.Text);
+            }
+                
         }
     }
 }
